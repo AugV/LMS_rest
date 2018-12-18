@@ -1,15 +1,28 @@
-package com.vainius.augustinas.lms_android.entities;
+package com.service.rest.entities;
 
+import lombok.Data;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Teacher extends Person {
-    private ArrayList<Course> teacherCourses = new ArrayList();
+@Data
+@Entity
+public class Teacher extends Person{
 
-    public Teacher(int loc_id, String loc_name, String loc_surname) {
-        super(loc_id, loc_name, loc_surname);
+    @OneToMany(cascade= CascadeType.ALL)
+    private List<Course> teacherCourses = new ArrayList();
+
+    public Teacher() {
     }
 
-    public ArrayList<Course> getTeacherCourses() {
+    public Teacher(String loc_name, String loc_surname) {
+        super(loc_name, loc_surname);
+    }
+
+    public List<Course> getTeacherCourses() {
         return teacherCourses;
     }
 
@@ -22,7 +35,7 @@ public class Teacher extends Person {
         return "ID: " + this.getId() +
                 ", Name: " + this.getName() +
                 ", Surname: " + this.getSurname() +
-                " entities.Teacher{" +
+                " Teacher{" +
                 " teacherCourses= " + teacherCourses +
                 '}';
     }

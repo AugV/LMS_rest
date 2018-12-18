@@ -1,58 +1,72 @@
-package com.vainius.augustinas.lms_android.entities;
+package com.service.rest.entities;
 
+import lombok.Data;
+
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Data
+@javax.persistence.Entity
 public class University extends Entity implements Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
 
+    @OneToMany(cascade= CascadeType.ALL)
     private List<Teacher> teacherList = new ArrayList();
-    private List<Group> groupList = new ArrayList();
+    @OneToMany(cascade= CascadeType.ALL)
+    private List<StudentsGroup> studentsGroupList = new ArrayList();
+    @OneToMany(cascade= CascadeType.ALL)
     private List<Course> courseList = new ArrayList();
 
-    private Group selectedGroup;
+    @Transient
+    private StudentsGroup selectedStudentsGroup;
 
-    public University(int id, String name) {
-        super(id, name);
+    public University() {
+    }
+
+    public University(String name) {
+        super(name);
     }
 
 
-    public void setSelectedGroup(Object selectedGroup) {
-        this.selectedGroup = (Group) selectedGroup;
+    public void setSelectedStudentsGroup(Object selectedStudentsGroup) {
+        this.selectedStudentsGroup = (StudentsGroup) selectedStudentsGroup;
     }
 
-    public Group getSelectedGroup() {
-        return selectedGroup;
+    public StudentsGroup getSelectedStudentsGroup() {
+        return selectedStudentsGroup;
     }
 
     //Groups
     //region
-    public List<Group> getGroupList() {
-        return groupList;
+    public List<StudentsGroup> getStudentsGroupList() {
+        return studentsGroupList;
     }
 
-    public void addGroup(Group group) {
-        groupList.add(group);
+    public void addGroup(StudentsGroup studentsGroup) {
+        studentsGroupList.add(studentsGroup);
     }
 
-    public void addGroup(int id, String name) {
-        Group group = new Group(id, name);
-        groupList.add(group);
+    public void addGroup(String name) {
+        StudentsGroup studentsGroup = new StudentsGroup(name);
+        studentsGroupList.add(studentsGroup);
     }
 
-    public Group getGroupByID(int id) {
-        for (Group group : this.getGroupList()) {
-            if (group.getId() == id) {
-                return group;
+    public StudentsGroup getGroupByID(int id) {
+        for (StudentsGroup studentsGroup : this.getStudentsGroupList()) {
+            if (studentsGroup.getId() == id) {
+                return studentsGroup;
             }
         }
         return null;
     }
 
     public void removeGroup(Object groupToRemove) {
-        groupList.remove(groupToRemove);
+        studentsGroupList.remove(groupToRemove);
     }
 
     //endregion
@@ -64,8 +78,8 @@ public class University extends Entity implements Serializable {
 
     public void removeCourse(Object courseToRemove) {
         courseList.remove(courseToRemove);
-        for (Group group : groupList) {
-            group.getGroupCourses().remove(courseToRemove);
+        for (StudentsGroup studentsGroup : studentsGroupList) {
+            studentsGroup.getGroupCourses().remove(courseToRemove);
         }
         for (Teacher teacher : teacherList) {
             teacher.getTeacherCourses().remove(courseToRemove);
@@ -115,8 +129,8 @@ public class University extends Entity implements Serializable {
         return null;
     }
 
-    public void addTeacher(int id, String name, String surname) {
-        Teacher teacher = new Teacher(id, name, surname);
+    public void addTeacher(String name, String surname) {
+        Teacher teacher = new Teacher(name, surname);
         teacherList.add(teacher);
     }
 
@@ -132,8 +146,8 @@ public class University extends Entity implements Serializable {
     //General
     public List<Student> getAllStudents() {
         List<Student> allStudents = new ArrayList<>();
-        for (Group group : groupList) {
-            allStudents.addAll(group.getGroupStudents());
+        for (StudentsGroup studentsGroup : studentsGroupList) {
+            allStudents.addAll(studentsGroup.getGroupStudents());
         }
         return allStudents;
     }
