@@ -1,7 +1,5 @@
 package com.service.rest;
 
-
-import com.service.rest.entities.Teacher;
 import com.service.rest.entities.TeacherRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -14,11 +12,13 @@ public class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase(TeacherRepository repository) {
-        return args -> {
+//        Teacher tchr = new Teacher("Naujas", "Talalai");
 
-            log.info("Preloading " + repository.save(new Teacher("Tadas", "Jabli")));
-            log.info("Preloading " + repository.save(new Teacher("Jonas", "KAponas")));
+        return args -> {
+            //log.info("Preloading " + repository.save(new Teacher("Naujas", "Talalai")));
+            //log.info("Preloading " + repository.save(new Teacher("Jonas", "Kaponas")));
         };
 
     }
+
 }

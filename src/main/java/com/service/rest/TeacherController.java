@@ -4,6 +4,7 @@ package com.service.rest;
 import com.service.rest.entities.Teacher;
 import com.service.rest.entities.TeacherRepository;
 import com.service.rest.exceptions.TeacherNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.web.bind.annotation.*;

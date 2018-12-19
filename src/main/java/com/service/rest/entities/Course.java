@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Course extends Entity implements Serializable {
     private String information;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Task> courseTasks = new ArrayList();
+
 
     public Course() {
     }
