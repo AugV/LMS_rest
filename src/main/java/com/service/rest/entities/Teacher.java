@@ -3,10 +3,8 @@ package com.service.rest.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +12,7 @@ import java.util.List;
 @Entity
 public class Teacher extends Person{
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Course> teacherCourses = new ArrayList();
 
     //private Student std = new Student("varda", "loxa");
