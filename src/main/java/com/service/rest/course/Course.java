@@ -1,6 +1,9 @@
-package com.service.rest.entities;
+package com.service.rest.course;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.service.rest.teacher.Teacher;
+import com.service.rest.entities.Task;
+import com.service.rest.entities.Entity;
 import lombok.Data;
 
 import javax.persistence.*;

@@ -1,7 +1,5 @@
-package com.service.rest.resource_assemblers;
+package com.service.rest.teacher;
 
-import com.service.rest.TeacherController;
-import com.service.rest.entities.Teacher;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Component;

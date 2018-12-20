@@ -1,4 +1,4 @@
-package com.service.rest.exceptions;
+package com.service.rest.course;
 
 public class CourseNotFoundException extends RuntimeException {
 

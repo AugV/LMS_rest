@@ -1,5 +1,7 @@
 package com.service.rest.entities;
 
+import com.service.rest.teacher.Teacher;
+import com.service.rest.course.Course;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -8,7 +10,6 @@ import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Data
 @javax.persistence.Entity

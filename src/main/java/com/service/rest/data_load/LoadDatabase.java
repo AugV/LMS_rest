@@ -1,15 +1,14 @@
-package com.service.rest;
+package com.service.rest.data_load;
 
-import com.service.rest.entities.Course;
-import com.service.rest.entities.CourseRepository;
-import com.service.rest.entities.Teacher;
-import com.service.rest.entities.TeacherRepository;
+import com.service.rest.course.Course;
+import com.service.rest.course.CourseRepository;
+import com.service.rest.teacher.Teacher;
+import com.service.rest.teacher.TeacherRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 @Configuration

@@ -1,5 +1,6 @@
 package com.service.rest.entities;
 
+import com.service.rest.course.Course;
 import lombok.Data;
 
 import javax.persistence.CascadeType;

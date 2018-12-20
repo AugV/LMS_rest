@@ -1,6 +1,5 @@
-package com.service.rest.exception_handling;
+package com.service.rest.teacher;
 
-import com.service.rest.exceptions.TeacherNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

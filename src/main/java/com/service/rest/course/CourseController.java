@@ -1,11 +1,6 @@
-package com.service.rest;
+package com.service.rest.course;
 
 
-import com.service.rest.entities.Course;
-import com.service.rest.entities.CourseRepository;
-import com.service.rest.entities.Course;
-import com.service.rest.entities.CourseRepository;
-import com.service.rest.exceptions.CourseNotFoundException;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.web.bind.annotation.*;

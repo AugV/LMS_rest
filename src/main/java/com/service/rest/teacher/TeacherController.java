@@ -1,10 +1,6 @@
-package com.service.rest;
+package com.service.rest.teacher;
 
 
-import com.service.rest.entities.Teacher;
-import com.service.rest.entities.TeacherRepository;
-import com.service.rest.exceptions.TeacherNotFoundException;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.web.bind.annotation.*;
@@ -19,18 +15,17 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class TeacherController {
 
     private final TeacherRepository repository;
+    private final TeacherResourceAssembler assembler;
 
-    public TeacherController(TeacherRepository repository) {
+    public TeacherController(TeacherRepository repository, TeacherResourceAssembler assembler) {
         this.repository = repository;
+        this.assembler = assembler;
     }
 
     @GetMapping("/teachers")
     public Resources<Resource<Teacher>> all() {
-
         List<Resource<Teacher>> teachers = repository.findAll().stream()
-                .map(teacher -> new Resource<>(teacher,
-                        linkTo(methodOn(TeacherController.class).one(teacher.getId())).withSelfRel(),
-                        linkTo(methodOn(TeacherController.class).all()).withRel("teachers")))
+                .map(assembler::toResource)
                 .collect(Collectors.toList());
 
         return new Resources<>(teachers, linkTo(methodOn(TeacherController.class).all()).withSelfRel());
@@ -45,9 +40,7 @@ public class TeacherController {
     public Resource<Teacher> one(@PathVariable int id) {
         Teacher teacher = repository.findById(id).orElseThrow(() -> new TeacherNotFoundException(id));
 
-        return new Resource<>(teacher,
-                linkTo(methodOn(TeacherController.class).one(id)).withSelfRel(),
-        linkTo(methodOn(TeacherController.class).all()).withRel("teachers"));
+        return assembler.toResource(teacher);
     }
 
     @PutMapping("/teachers/{id}")

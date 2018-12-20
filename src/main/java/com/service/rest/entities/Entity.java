@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Data
 @MappedSuperclass
-public abstract class Entity {
+abstract public class Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public abstract class Entity {
     public Entity() {
     }
 
-    Entity( String name){
+    public Entity( String name){
         this.name = name;
     }
 
