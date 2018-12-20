@@ -1,5 +1,6 @@
 package com.service.rest.entities;
 
+import com.service.rest.students_group.StudentsGroup;
 import com.service.rest.teacher.Teacher;
 import com.service.rest.course.Course;
 import lombok.Data;

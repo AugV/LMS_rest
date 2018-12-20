@@ -1,6 +1,8 @@
-package com.service.rest.entities;
+package com.service.rest.students_group;
 
 import com.service.rest.course.Course;
+import com.service.rest.entities.Entity;
+import com.service.rest.entities.Student;
 import lombok.Data;
 
 import javax.persistence.CascadeType;

@@ -1,18 +1,16 @@
-package com.service.rest.teacher;
+package com.service.rest.students_group;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ControllerAdvice
-public class TeacherNotFoundAdvice {
+public class StudentsGroupNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(TeacherNotFoundException.class)
+    @ExceptionHandler(StudentGroupNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String teacherNotFoundHandler(TeacherNotFoundException e){
+    String GroupNotFoundHandler(StudentGroupNotFoundException e){
         return e.getMessage();
     }
 }

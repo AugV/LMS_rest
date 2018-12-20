@@ -23,8 +23,8 @@ public class TeacherController {
     }
 
     @GetMapping("/teachers")
-    public Resources<Resource<Teacher>> all() {
-        List<Resource<Teacher>> teachers = repository.findAll().stream()
+    public Resources all() {
+        List teachers = repository.findAll().stream()
                 .map(assembler::toResource)
                 .collect(Collectors.toList());
 
@@ -37,7 +37,7 @@ public class TeacherController {
     }
 
     @GetMapping("/teachers/{id}")
-    public Resource<Teacher> one(@PathVariable int id) {
+    public Resource one(@PathVariable int id) {
         Teacher teacher = repository.findById(id).orElseThrow(() -> new TeacherNotFoundException(id));
 
         return assembler.toResource(teacher);

@@ -1,5 +1,6 @@
 package com.service.rest.entities;
 
+import com.service.rest.students_group.StudentsGroup;
 import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
