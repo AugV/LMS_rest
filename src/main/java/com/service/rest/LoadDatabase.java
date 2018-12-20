@@ -20,7 +20,7 @@ public class LoadDatabase {
 
             Teacher mokTestutis = teacherRepository.save(new Teacher("Testas", "Testutis"));
             Course kursas = courseRepository.save(new Course("Fizkultura", "pasprotuojam"));
-            
+
 //            mokTestutis.addTeacherCourses(kursas);
 //            teacherRepository.save(mokTestutis);
 

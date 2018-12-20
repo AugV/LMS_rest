@@ -17,21 +17,4 @@ public class Student extends Person {
         super(loc_name, loc_surname);
     }
 
-    public StudentsGroup getStudentsGroup() {
-        return studentsGroup;
-    }
-
-    public void setStudentsGroup(StudentsGroup studentsGroup) {
-        this.studentsGroup = studentsGroup;
-    }
-
-    @Override
-    public String toString() {
-        return " Student{" +
-                "ID: " + getId() +
-                ", Name: " + getName() +
-                ", Surname: " + getSurname() +
-                '}';
-    }
-
 }

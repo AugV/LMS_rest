@@ -21,16 +21,4 @@ abstract public class Person extends Entity implements Serializable {
         this.surname = loc_surname;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    @Override
-    public String toString() {
-        return "entities.Person{" +
-                "id=" + this.getId() +
-                ", name='" + this.getName() + '\'' +
-                ", surname='" + surname + '\'' +
-                '}';
-    }
 }

@@ -16,11 +16,9 @@ public class CompletedTask extends Entity implements Serializable {
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
     private static Calendar calendar = Calendar.getInstance();
 
-    public CompletedTask() {
-    }
-
     @ManyToOne
     private Student owner;
+
     @Column
     private String answer;
     @Column
@@ -30,6 +28,8 @@ public class CompletedTask extends Entity implements Serializable {
     @Column
     private String gradeDate;
 
+    public CompletedTask() {
+    }
 
     public CompletedTask(String answer, Student owner) {
         super();
@@ -38,39 +38,4 @@ public class CompletedTask extends Entity implements Serializable {
         this.owner = owner;
     }
 
-    public String getAnswer() {
-        return answer;
-    }
-
-    public Student getOwner() {
-        return owner;
-    }
-
-    public String getSubmissionDate() {
-        return submissionDate;
-    }
-
-    public String getGradeDate() {
-        return gradeDate;
-    }
-
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-        this.gradeDate = dateFormat.format(calendar.getTime());
-    }
-
-    @Override
-    public String toString() {
-        return "entities.CompletedTask{" +
-                "answer='" + answer + '\'' +
-                ", grade='" + grade + '\'' +
-                ", submissionDate='" + submissionDate + '\'' +
-                ", gradeDate='" + gradeDate + '\'' +
-                '}';
-    }
 }

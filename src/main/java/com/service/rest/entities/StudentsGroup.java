@@ -20,33 +20,8 @@ public class StudentsGroup extends Entity implements Serializable {
     public StudentsGroup() {
     }
 
-    public void addGroupCourse(Course groupCourse) {
-        this.groupCourses.add(groupCourse);
-    }
-
     public StudentsGroup(String name) {
         super(name);
     }
 
-    public List<Student> getGroupStudents() {
-        return groupStudents;
-    }
-
-    public void addGroupStudents(Student student) {
-        student.setStudentsGroup(this);
-        this.groupStudents.add(student);
-    }
-
-    public List<Course> getGroupCourses() {
-        return groupCourses;
-    }
-
-    @Override
-    public String toString() {
-        return "entities.StudentsGroup{" +
-                "groupID=" + this.getId() +
-                ", name='" + this.getName() + '\'' +
-                ", groupStudents=" + groupStudents +
-                '}';
-    }
 }
