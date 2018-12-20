@@ -12,7 +12,14 @@ import java.util.List;
 @Entity
 public class Teacher extends Person{
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Course> teacherCourses = new ArrayList();
+    private List<Course> teacherCourses;
 
+    public Teacher() {
+    }
+
+    public Teacher(String loc_name, String loc_surname) {
+        super(loc_name, loc_surname);
+    }
 }

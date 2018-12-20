@@ -9,6 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 @Configuration
 @Slf4j
 public class LoadDatabase {
@@ -18,11 +21,25 @@ public class LoadDatabase {
 
         return args -> {
 
-            Teacher mokTestutis = teacherRepository.save(new Teacher("Testas", "Testutis"));
-            Course kursas = courseRepository.save(new Course("Fizkultura", "pasprotuojam"));
+            //init Teachers
+            Teacher teacher1 = teacherRepository.save(new Teacher("Mokytojas1", "Mokytojauskas1"));
+            Teacher teacher2 = teacherRepository.save(new Teacher("Mokytojas2", "Mokytojauskas2"));
 
-//            mokTestutis.addTeacherCourses(kursas);
-//            teacherRepository.save(mokTestutis);
+            //init Courses
+            Course kursas1 = courseRepository.save(new Course("kursas1", "kursoInfo1"));
+            Course kursas2 = courseRepository.save(new Course("kursas2", "kursoInfo2"));
+            Course kursas3 = courseRepository.save(new Course("kursas3", "kursoInfo3"));
+
+            //relation
+            teacher1.setTeacherCourses(Arrays.asList(kursas1,kursas2));
+            teacher2.setTeacherCourses(Arrays.asList(kursas3));
+            kursas1.setCourseTeacher(teacher1);
+            kursas2.setCourseTeacher(teacher1);
+            kursas3.setCourseTeacher(teacher2);
+
+            //saving
+            teacherRepository.saveAll(Arrays.asList(teacher1,teacher2));
+            courseRepository.saveAll(Arrays.asList(kursas1,kursas2,kursas3));
 
         };
 

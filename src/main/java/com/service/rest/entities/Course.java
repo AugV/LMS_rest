@@ -1,10 +1,10 @@
 package com.service.rest.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -12,9 +12,11 @@ import java.util.List;
 public class Course extends Entity implements Serializable {
     @Column
     private String information;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Task> courseTasks = new ArrayList();
-
+    @OneToMany
+    private List<Task> courseTasks;
+    @JsonIgnore
+    @ManyToOne
+    private Teacher courseTeacher;
 
     public Course() {
     }
