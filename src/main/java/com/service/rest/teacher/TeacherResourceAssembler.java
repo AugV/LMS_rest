@@ -20,7 +20,7 @@ class TeacherResourceAssembler implements ResourceAssembler<Teacher, Resource> {
                 linkTo(methodOn(TeacherController.class).all()).withRel("teachers"));
 
         for (Course course: teacher.getTeacherCourses()) {
-            resource.add(linkTo(methodOn(CourseController.class).one(course.getId())).withSelfRel());
+            resource.add(linkTo(methodOn(CourseController.class).one(course.getId())).withRel(course.getName()));
         }
 
         return resource;
