@@ -1,6 +1,5 @@
 package com.service.rest.students_group;
 
-import com.service.rest.teacher.Teacher;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +20,7 @@ public class StudentsGroupController {
     StudentsGroupResourceAssembler assembler;
 
     @GetMapping("/groups")
-    Resources all(){
+    Resources all() {
         List groups = repository.findAll().stream()
                 .map(assembler::toResource)
                 .collect(Collectors.toList());
@@ -30,17 +28,30 @@ public class StudentsGroupController {
     }
 
     @GetMapping("/groups/{id}")
-    Resource one(@PathVariable int id){
-        StudentsGroup group = repository.findById(id).orElseThrow(()->new StudentGroupNotFoundException(id));
+    Resource one(@PathVariable int id) {
+        StudentsGroup group = repository.findById(id).orElseThrow(() -> new StudentGroupNotFoundException(id));
         return assembler.toResource(group);
     }
 
-
-
-    @PutMapping("/groups/{id}")
+    @PostMapping("/groups")
     ResponseEntity<?> newGroup(@RequestBody StudentsGroup newGroup) throws URISyntaxException {
-        Resource<StudentsGroup> resource= assembler.toResource(repository.save(newGroup));
+        Resource resource = assembler.toResource(repository.save(newGroup));
         return ResponseEntity.created(new URI(resource.getId().expand().getHref())).body(resource);
     }
 
+    @PutMapping("/groups/{id}")
+    ResponseEntity<?> replaceGroup(@RequestBody StudentsGroup newGroup, @PathVariable int id) throws URISyntaxException {
+        StudentsGroup updatedGroup = repository.findById(id)
+                .map(studentsGroup -> {
+                    studentsGroup.setName(newGroup.getName());
+                    return repository.save(studentsGroup);
+                })
+                .orElseGet(() -> {
+                    newGroup.setId(id);
+                    return repository.save(newGroup);});
+
+        Resource resource = assembler.toResource(updatedGroup);
+        return ResponseEntity.created(new URI(resource.getId().expand().getHref())).body(resource);
+
+    }
 }
